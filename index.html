@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <p id="logradouro-info"></p>
+    <p id="complemento-info"></p>
+    <p id="bairro-info"></p>
+    <p id="localidade-info"></p>
+    <p id="cep-info"></p>
+    <p id="uf-info"></p>
+
+   
+
+    <script>
+        let cep = prompt("Insira um CEP: ")
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+
+        .then(resposta => resposta.json())
+
+        .then(dados => 
+{
+    console.log(dados)
+
+    let tag_cep = document.getElementById('cep-info')
+    console.log(tag_cep)
+
+    let chave_cep = dados.cep
+    console.log(chave_cep)
+
+    tag_cep.innerHTML = chave_cep
+
+    let tag_logradouro = document.getElementById('logradouro-info')
+    console.log(tag_logradouro)
+    
+    let chave_logradouro = dados.logradouro
+    console.log(chave_logradouro)
+
+    tag_logradouro.innerHTML = chave_logradouro
+
+    //LOGRADOURO
+
+    let tag_complemento = document.getElementById('complemento-info')
+    console.log (tag_complemento)
+
+    let chave_complemento = dados.complemento
+    console.log (chave_complemento)
+
+    tag_complemento.innerHTML = chave_complemento
+
+    let tag_bairro = document.getElementById('bairro-info')
+    console.log (tag_bairro)
+    
+    let chave_bairro = dados.bairro
+    console.log (chave_bairro)
+    
+    tag_bairro.innerHTML = chave_bairro
+
+    let tag_localidade = document.getElementById('localidade-info')
+    console.log (tag_localidade)
+
+    let chave_localidade = dados.localidade
+    console.log (chave_localidade)
+
+    tag_localidade.innerHTML = chave_localidade
+
+    let tag_uf = document.getElementById('uf-info')
+    
+    let chave_uf = dados.uf
+
+    tag_uf.innerHTML = chave_uf
+
+}     
+        
+        )
+    </script>
+    
+</body>
+</html>

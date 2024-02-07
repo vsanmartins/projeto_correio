@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="" id="foto">
+    <span id="espaço_pro_nome"></span>
+    <p id="bio"></p>
+    
+    <script>
+        let nome = prompt("Digite seu login do github: ")
+        //estou captando minha url (minha api)
+        fetch(`https://api.github.com/users/${nome}`)
+        //então (then) transformamos nossa resposta
+        //que ate então veio como string
+        //para um objeto javascript novamente
+        .then(resposta => resposta.json())
+        //dados foi a forma como chamamos o objeto javascript, que na linha
+        //anterior foi retirado do formato json
+        .then(dados => 
+        {
+            console.log(dados)
+            //preciso pegar minha tag img
+            //preciso pegar o valor no meu objeto
+            //preciso colocar o valor que eu peguei dentro do src da imagem
+
+            let imagem = document.getElementById('foto')
+            console.log(imagem)
+
+            let valor = dados.avatar_url
+            console.log(valor)
+
+            imagem.src = valor
+
+            //preciso pegar a tag span
+            //preciso pegar o nome de usuario no objeto
+            //escrever o nome do usuário dentro da tag span
+
+            let span = document.getElementById('espaço_pro_nome')
+            console.log(span)
+
+            let span_name = dados.name
+            console.log(span_name)
+
+            span.innerHTML = span_name 
+
+            //pegar a tag da bio
+            //pegar a biografia dentro do objeto
+            //escrever a biografia dentro da tag p para bio
+
+            let tag_bio = document.getElementById('bio')
+            console.log(tag_bio)
+
+            let chave_bio = dados.bio
+            console.log(chave_bio)
+
+            tag_bio.innerHTML = chave_bio
+
+
+        
+        
+        
+        } 
+        
+        )
+    </script>
+</body>
+</html>
